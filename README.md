@@ -20,7 +20,8 @@ The `byrd.txt` file needs to be extracted from the
 
 This version of the Byrd record is assigned a station identifier of:
 
-    79889125000
+    79889324000
 
-("798" is a fake country in the Antarctic 7xx range used by
-GHCN-M; "89125" is Byrd's WMO identifier)
+"798" is a fake country in the Antarctic 7xx range used by GHCN-M.
+
+"89324" is Byrd's WMO identifier (in a recent WMO Volume A)
