@@ -48,13 +48,22 @@ def years_iter(inp):
           for b in range(5, 89, 7)]
         yield (year, monthly)
 
-def main():
-    place = "http://polarmet.osu.edu/Byrd_recon/byrd_temp_recon_monthly_revised.txt"
-    if re.match(r'^https?:', place):
-        inp = urllib.request.urlopen(place)
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv
+
+    # Get source as an optional argument.
+    arg = argv[1:]
+    if arg:
+        (source,) = arg
+    else:
+        source = "http://polarmet.osu.edu/Byrd_recon/byrd_temp_recon_monthly_revised.txt"
+
+    if re.match(r'^https?:', source):
+        inp = urllib.request.urlopen(source)
         inp = codecs.getreader('ascii')(inp)
     else:
-        inp = open(place)
+        inp = open(source)
     with inp as byrd, open('byrd.dat', 'w') as out:
         # See README.md for note about identifier.
         ghcnm_write('79889324000', years_iter(byrd), out)
