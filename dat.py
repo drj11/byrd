@@ -45,12 +45,12 @@ def years_iter(inp):
         yield (year, monthly)
 
 def main():
-    with open('byrd.txt') as byrd:
+    with open('byrd.txt') as byrd, open('byrd.dat', 'w') as out:
         # Country Code 798 which is a new fake country in the
         # 7xx series that GHCN-M uses for Antarctica.
         # 89125 is the WMO identifier for Byrd, as used in the
         # GHCN-M .inv file.
-        ghcnm_write('79889125000', years_iter(byrd), sys.stdout)
+        ghcnm_write('79889125000', years_iter(byrd), out)
 
 if __name__ == '__main__':
     main()
