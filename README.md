@@ -10,11 +10,17 @@ is much more complete than the records in GHCN-M.
 The text file for the recontructed record is here:
 http://polarmet.osu.edu/Byrd_recon/byrd_temp_recon_monthly_revised.txt
 
-The program `dat.py` converts the `byrd.txt` file to GHCN-M v3 format.
+Run the program:
 
-The `byrd.txt` file needs to be extracted from the
-`GISTEMPv3_sources.tar.gz` file (at the location
-`GISTEMP_sources/STEP0/input_files/byrd.txt`) published by NASA GISS.
+    ./dat.py
+
+This downloads the record (from the above URL) and converts it
+to GHCN-M v3 format, writing its output to `byrd.out`.
+
+Alternatively, if you have already downloaded the text file, you
+can convert that:
+
+    ./dat.py byrd.txt
 
 ## Station Identifiers
 
