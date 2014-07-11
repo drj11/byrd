@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
+# https://docs.python.org/3.2/library/codecs.html
+import codecs
 import re
 import sys
+# https://docs.python.org/3.2/library/urllib.request.html
+import urllib.request
 
 MISSING = -9999.0
 
@@ -45,7 +49,13 @@ def years_iter(inp):
         yield (year, monthly)
 
 def main():
-    with open('byrd.txt') as byrd, open('byrd.dat', 'w') as out:
+    place = "http://polarmet.osu.edu/Byrd_recon/byrd_temp_recon_monthly_revised.txt"
+    if re.match(r'^https?:', place):
+        inp = urllib.request.urlopen(place)
+        inp = codecs.getreader('ascii')(inp)
+    else:
+        inp = open(place)
+    with inp as byrd, open('byrd.dat', 'w') as out:
         # See README.md for note about identifier.
         ghcnm_write('79889324000', years_iter(byrd), out)
 
